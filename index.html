@@ -7,9 +7,8 @@
   <meta name="description" content="Portfolio of Monisha Aroumougam — Professional artist specializing in pencil sketches, colour pencil art, resin art, and handmade crafts. Commission-based artwork available." />
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="Insta-DP.jpg" />
-  <link rel="apple-touch-icon" href="Insta-DP.jpg" />
-  
+  <link rel="icon" type="image/jpeg" href="DP2.jpg" />
+  <link rel="apple-touch-icon" href="DP2.jpg" />
   <!-- Open Graph Meta Tags for Social Media -->
   <meta property="og:title" content="Monisha A — Artist Portfolio" />
   <meta property="og:description" content="Professional artist specializing in pencil sketches, colour pencil, resin art, and handmade crafts. Available for commissions." />
@@ -31,6 +30,53 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* Scroll Animations */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Client Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, rgba(183,139,255,0.1), rgba(255,139,213,0.1));
+      border-radius: 24px;
+      padding: 48px 32px;
+      margin: 60px 0;
+      border: 1px solid rgba(183,139,255,0.2);
+      animation: fadeIn 1s ease-out;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+    .stat-item {
+      transition: var(--transition);
+    }
+    .stat-item:hover {
+      transform: translateY(-8px);
+    }
+    .stat-number {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
     /* Ensure navigation and logo text are visible in dark mode */
     [data-theme='dark'] nav ul li a {
       color: #f0f0f0 !important;
@@ -641,8 +687,10 @@
       display:none;
       align-items:center;
       justify-content:center;
+      gap: 16px;
       background:rgba(0,0,0,0.6);
       z-index:80;
+      padding: 16px;
     }
     .lightbox.open{
       display:flex;
@@ -654,10 +702,64 @@
       overflow:hidden;
       background:#fff;
       padding:10px;
+      position: relative;
     }
     .lightbox img{
       max-height:80vh;
       width:auto;
+      display: block;
+    }
+    
+    /* Lightbox Navigation Buttons */
+    .lightbox-nav-btn {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border: none;
+      background: linear-gradient(135deg, rgba(183,139,255,0.9), rgba(255,139,213,0.9));
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lightbox-nav-btn:hover {
+      background: linear-gradient(135deg, rgba(183,139,255,1), rgba(255,139,213,1));
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(183,139,255,0.6);
+    }
+    .lightbox-nav-btn:active {
+      transform: scale(0.95);
+    }
+    
+    /* Lightbox Close Button */
+    .lightbox-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: rgba(255,255,255,0.95);
+      color: #333;
+      font-size: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .lightbox-close:hover {
+      background: #fff;
+      transform: rotate(90deg);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     /* Services */
@@ -702,6 +804,113 @@
     }
     [data-theme="dark"] .service h3{
       color: #f0f0f0;
+    }
+
+    /* Payment Methods Section */
+    .payment-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .payment-card{
+      background: var(--card);
+      padding: 32px 24px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(183,139,255,0.15);
+    }
+    .payment-card:hover{
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(183,139,255,0.3);
+    }
+    .payment-icon{
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .payment-card h3{
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    .payment-card p{
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Gift Recommendations Section */
+    .gift-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin: 40px 0;
+    }
+    .gift-card{
+      background: var(--card);
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(183,139,255,0.15);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .gift-card::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .gift-card:hover::before{
+      transform: scaleX(1);
+    }
+    .gift-card:hover{
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(183,139,255,0.3);
+    }
+    .gift-emoji{
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+    .gift-card h3{
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    .gift-desc{
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      min-height: 40px;
+    }
+    .gift-features{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .gift-features li{
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+    .gift-features li::before{
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
     }
     
     /* Diwali Offer Dark Mode */
@@ -1800,17 +2009,16 @@
         width: 56px;
         height: 56px;
       }
-      /* Better lightbox buttons for mobile */
-      #prevBtn, #nextBtn{
-        padding: 12px 20px;
-        font-size: 18px;
-        margin: 0 6px;
-        border: none;
-        background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-        color: white;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(183,139,255,0.3);
+      /* Mobile Lightbox - Larger nav buttons */
+      .lightbox-nav-btn {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 28px !important;
+      }
+      .lightbox-close {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 28px !important;
       }
       /* Improve filter buttons on mobile */
       .filters{
@@ -1923,7 +2131,7 @@
     <div class="container navbar">
       <div class="logo">
         <div class="mark">
-          <img src="Insta-DP.jpg" alt="Monisha Aroumougam" style="width:48px;height:48px;border-radius:12px;object-fit:cover;" />
+          <img src="DP2.jpg" alt="Monisha Aroumougam" style="width:48px;height:48px;border-radius:12px;object-fit:cover;" />
         </div>
         <div>
           <div style="font-weight:700;color:var(--text)">Monisha Aroumougam</div>
@@ -1936,6 +2144,8 @@
           <li><a href="#about">About</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#services">Services</a></li>
+          <li><a href="#payment-methods">Payment</a></li>
+          <li><a href="#gift-recommendations">Gifts</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact" class="cta">Contact</a></li>
@@ -2026,7 +2236,7 @@
         </div>
         <div>
           <div style="background:linear-gradient(135deg,#fff7fb,#f6f9ff);padding:12px;border-radius:12px;box-shadow:var(--shadow)">
-            <img src="Insta-DP.jpg" alt="Artist photo" style="border-radius:10px;" />
+            <img src="DP2.jpg" alt="Artist photo" style="border-radius:10px;" />
           </div>
         </div>
       </div>
@@ -2064,14 +2274,14 @@
           <div class="meta"><div style="font-weight:600">Watercolour — Study</div><div class="badge">Watercolour — Personal</div></div>
         </div>
 
-        <div class="card" data-cat="acrylic">
-          <img src="Acrylic-Image.webp" alt="Acrylic 1" />
+        <div class="card" data-cat="acrylic" data-images="Acrylic-Image.webp, acrylic 31.jpeg, arcylic 32.jpeg">
+          <img src="Acrylic-Image.webp" alt="Acrylic 1" loading="lazy" />
           <div class="meta"><div style="font-weight:600">Acrylic — Experiment</div><div class="badge">Acrylic — Personal</div></div>
         </div>
 
        <div class="card" data-cat="resin" 
-     data-images="ResinArt-Image.webp,ResinArt2-Image.webp">
-  <img src="ResinArt-Image.webp" alt="Resin art preview" />
+     data-images="ResinArt-Image.webp, ResinArt2-Image.webp, ResinArt3-Image.jpeg">
+  <img src="ResinArt-Image.webp" alt="Resin art preview" loading="lazy" />
   <div class="meta">
     <div style="font-weight:600">Resin Coaster — Ocean theme</div>
     <div class="badge">Resin</div>
@@ -2088,14 +2298,12 @@
 
       <!-- Lightbox -->
       <div class="lightbox" id="lightbox">
+  <button id="prevBtn" class="lightbox-nav-btn lightbox-prev" aria-label="Previous image">◀</button>
   <div class="view">
-    <button id="closeLight" style="float:right;border:0;background:none;font-size:22px;cursor:pointer">✕</button>
+    <button id="closeLight" class="lightbox-close">✕</button>
     <img id="lightboxImage" src="" alt="Artwork" />
-    <div style="text-align:center;margin-top:8px">
-      <button id="prevBtn" style="padding:8px 16px;margin:0 4px;border:1px solid #ddd;background:#fff;border-radius:6px;cursor:pointer">◀</button>
-      <button id="nextBtn" style="padding:8px 16px;margin:0 4px;border:1px solid #ddd;background:#fff;border-radius:6px;cursor:pointer">▶</button>
-    </div>
   </div>
+  <button id="nextBtn" class="lightbox-nav-btn lightbox-next" aria-label="Next image">▶</button>
 </div>
 
 
@@ -2107,8 +2315,7 @@
   <p class="lead">
     Beginner strategy: affordable rates to build portfolio.<br>
     Models: by size, by medium, by complexity.<br>
-    Example: The starting rate for the Pencil Sketch in A4 = ₹500 & in A3 = ₹1000.<br>
-    • If the character increases, the price also increases (i.e., + character/head = + ₹500)
+    <strong>For detailed pricing and custom quotes, DM me on WhatsApp!</strong>
   </p>
 
   <div class="services-grid">
@@ -2148,16 +2355,7 @@
       <p style="font-weight:700">Custom pricing</p>
     </div>
 
-    <div class="service diwali-offer" style="grid-column:1/-1;background:linear-gradient(135deg,#fff7f9,#f7f3ff);">
-      <h3>🪔 Diwali Combo Offer 🎁</h3>
-      <p class="lead">Choose any one of the following exciting options:</p>
-      <ul>
-        <li>10% Discount on Your First Order</li>
-        <li>Discounts Based on Follower Growth</li>
-        <li>Customized Resin Art Keychain</li>
-      </ul>
-      <p style="font-weight:700;color:#b75cff;">Hurry! These offers are valid until a week before Diwali, so act fast!</p>
-    </div>
+
     </div>
   </div>
 </section>
@@ -2167,11 +2365,11 @@
       <div class="instagram-header">
         <h2 class="section-title">Follow My Journey</h2>
         <p class="lead">See my latest artworks and behind-the-scenes on Instagram</p>
-        <a href="https://www.instagram.com/_monis_sketchbook_?igsh=ODVkd2xha3pjNDhz" target="_blank" class="instagram-handle">
+        <a href="https://www.instagram.com/moniverse_atelier?igsh=ODVkd2xha3pjNDhz" target="_blank" class="instagram-handle">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
           </svg>
-          @_monis_sketchbook_
+          @moniverse_atelier
         </a>
       </div>
     </section>
@@ -2208,12 +2406,12 @@
         </div>
 
         <div class="testimonial">
-          <p class="testimonial-text">"I commissioned a colour pencil portrait of my pet dog and I'm blown away by the result. Monisha is incredibly talented and professional. Worth every rupee!"</p>
+          <p class="testimonial-text">"I commissioned a pencil portrait of my Pencil Sketch and I'm blown away by the result. Monisha is incredibly talented and professional. Worth every rupee!"</p>
           <div class="testimonial-author">
             <img src="https://ui-avatars.com/api/?name=Christy&background=ffb86b&color=fff" alt="Anjali Reddy" />
             <div class="testimonial-author-info">
               <div class="testimonial-name">Christy</div>
-              <div class="testimonial-role">Pet Portrait Client</div>
+              <div class="testimonial-role">Pencil Portrait Client</div>
               <div class="testimonial-stars">★★★★★</div>
             </div>
           </div>
@@ -2316,6 +2514,98 @@
       </div>
     </section>
 
+    <!-- Payment Methods Section -->
+    <section id="payment-methods">
+      <h2 class="section-title">Payment Methods</h2>
+      <p class="lead">Flexible payment options for your convenience</p>
+      
+      <div class="payment-grid">
+        <div class="payment-card">
+          <div class="payment-icon">📱</div>
+          <h3>UPI</h3>
+          <p>Quick and secure digital payment via UPI apps</p>
+        </div>
+        
+        <div class="payment-card">
+          <div class="payment-icon">🏦</div>
+          <h3>Bank Transfer</h3>
+          <p>Direct bank account transfer for larger orders</p>
+        </div>
+        
+        <div class="payment-card">
+          <div class="payment-icon">💳</div>
+          <h3>Google Pay</h3>
+          <p>Easy payments through Google Pay app</p>
+        </div>
+        
+        <div class="payment-card">
+          <div class="payment-icon">💰</div>
+          <h3>Cash on Delivery</h3>
+          <p>Local pickup in Pondicherry with cash payment</p>
+        </div>
+      </div>
+      
+      <p class="lead" style="text-align: center; margin-top: 30px; font-size: 16px;">
+        50% advance payment required to start your commission · Remaining 50% upon completion
+      </p>
+    </section>
+
+    <!-- Gift Recommendations Section -->
+    <section id="gift-recommendations">
+      <h2 class="section-title">Perfect Gift Ideas</h2>
+      <p class="lead">Custom packages for every occasion</p>
+      
+      <div class="gift-grid">
+        <div class="gift-card">
+          <div class="gift-emoji">🎂</div>
+          <h3>Birthday Surprise</h3>
+          <p class="gift-desc">Custom portrait or sketch of the birthday person</p>
+          <ul class="gift-features">
+            <li>Pencil or colour pencil portrait</li>
+            <li>A4 size with custom frame</li>
+            <li>Ready in 5-7 days</li>
+          </ul>
+        </div>
+        
+        <div class="gift-card">
+          <div class="gift-emoji">💍</div>
+          <h3>Anniversary Gift</h3>
+          <p class="gift-desc">Romantic couple portrait or custom resin piece</p>
+          <ul class="gift-features">
+            <li>Couple portrait sketch</li>
+            <li>Custom resin keepsake</li>
+            <li>Personalized packaging</li>
+          </ul>
+        </div>
+        
+        <div class="gift-card">
+          <div class="gift-emoji">🐾</div>
+          <h3>Pet Portrait</h3>
+          <p class="gift-desc">Immortalize your beloved pet</p>
+          <ul class="gift-features">
+            <li>Detailed pet sketch or portrait</li>
+            <li>Various sizes available</li>
+            <li>Perfect for pet lovers</li>
+          </ul>
+        </div>
+        
+        <div class="gift-card">
+          <div class="gift-emoji">🏠</div>
+          <h3>Housewarming Gift</h3>
+          <p class="gift-desc">Beautiful resin coasters or custom wall art</p>
+          <ul class="gift-features">
+            <li>Custom resin coasters set</li>
+            <li>Matching wall art</li>
+            <li>Modern home décor style</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 40px;">
+        <p class="lead">Have a unique gift idea in mind? <strong>DM me on WhatsApp</strong> for a personalized quote!</p>
+      </div>
+    </section>
+
     <section id="contact">
   <h2 class="section-title">Contact</h2>
   <p class="lead">Send an inquiry — we'll reply via email or WhatsApp.</p>
@@ -2341,7 +2631,7 @@
 <p class="lead">Connect with me on:</p>
 <div class="social-links">
   <!-- Instagram -->
-  <a href="https://www.instagram.com/_monis_sketchbook_?igsh=ODVkd2xha3pjNDhz" target="_blank" aria-label="Instagram" class="social instagram">
+  <a href="https://www.instagram.com/moniverse_atelier?igsh=ODVkd2xha3pjNDhz" target="_blank" aria-label="Instagram" class="social instagram">
     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" />
   </a>
 
@@ -2504,6 +2794,25 @@
 
   // Initialize lightbox
   setupLightbox()
+
+  // Scroll Reveal Animation
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  }
+  
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+        observer.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+  
+  qsa('.scroll-reveal').forEach(el => {
+    observer.observe(el)
+  })
 
   // ---------------- Contact Form via Formspree ----------------
   const form = qs('#contactForm')
